@@ -1,0 +1,2 @@
+D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW\x64\Debug\MyFirstGLFW.exe
+D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW - Copy\x64\Debug\MyFirstGLFW.exe

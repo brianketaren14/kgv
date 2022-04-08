@@ -1,0 +1,8 @@
+﻿  Main.cpp
+D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW - Copy\Main.cpp(32,20): warning C4305: '+=': truncation from 'double' to 'float'
+D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW - Copy\Main.cpp(44,22): warning C4305: '-=': truncation from 'double' to 'float'
+D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW - Copy\Main.cpp(90,5): warning C4305: 'initializing': truncation from 'double' to 'float'
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW - Copy\x64\Debug\vc120.pdb'; linking object as if no debug info
+  MyFirstGLFW.vcxproj -> D:\Semester 4\Komputer Grafik dan Visualisasi\project glfw\MyFirstGLFW - Copy\x64\Debug\MyFirstGLFW.exe
