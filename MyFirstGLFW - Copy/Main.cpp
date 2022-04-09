@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -8,7 +9,19 @@ float color1[] = { 1.0f,1.0f,1.0f,1.0f};
 float color2[] = { 1.0f,0.0f,0.0f,1.0f};
 unsigned int program;
 GLint color1Loc, color2Loc, scaleloc;
-float r=1;
+float r=0.5;
+
+void octagonVertices(float r, float vertices[9][2]) {
+    for (int i = 0; i < 8; i++) {
+        // 1, 2, 3, ..., 8
+        // 0, 1,
+        vertices[i+1][0] = r * cos(2 * M_PI * i/ 8); // 0,1,2,3,4,5,6,7
+        vertices[i+1][1] = r * sin(2 * M_PI * i/ 8);
+    }
+    for (int i = 0; i < 9; i++) {
+        cout << vertices[i][0] << ", " << vertices[i][1] << endl;
+    }
+}
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -34,7 +47,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         else if(r>=2){
             r += 0;
         }
-        std::cout << r << endl;
+        //std::cout << r << endl;
         glUniform1f(scaleloc, r);
     }
     else if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
@@ -46,7 +59,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         else if( r <=0){
             r -= 0;
         }
-        std::cout << r << endl;
+        //std::cout << r << endl;
         glUniform1f(scaleloc, r);
     }
     
@@ -71,23 +84,17 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
     
-    glfwSetKeyCallback(window, keyCallback);
+    //glfwSetKeyCallback(window, keyCallback);
 
 
     GLenum err = glewInit();
 
     // vertex
-    float vertices[] = {
-        0,0, // 0
-        0.6,-0.3, // 1
-        0.3,-0.6, // 2
-        -0.3,-0.6, // 3
-        -0.6,-0.3, // 4
-        -0.6,0.3, // 5
-        -0.3,0.6, // 6
-        0.3,0.6, // 7
-        0.6,0.3 // 8
+    float vertices[9][2] = {
+        {0,0 }, // 0
     };
+    octagonVertices(1, vertices);
+
     // index untuk gambar 
     unsigned int indexArr[] = {
         0,1,2,
