@@ -5,18 +5,18 @@
 #include "Util.h"
 #include <math.h>
 
-float color1[] = { 1.0f,1.0f,1.0f,1.0f};
-float color2[] = { 1.0f,0.0f,0.0f,1.0f};
+//float color1[] = { 1.0f,1.0f,1.0f,1.0f };
+//float color2[] = { 1.0f,0.0f,0.0f,1.0f };
 unsigned int program;
 GLint color1Loc, color2Loc, scaleloc;
-float r=0.5;
+float r = 0.5;
 
 void octagonVertices(float r, float vertices[9][2]) {
     for (int i = 0; i < 8; i++) {
         // 1, 2, 3, ..., 8
         // 0, 1,
-        vertices[i+1][0] = r * cos(2 * M_PI * i/ 8); // 0,1,2,3,4,5,6,7
-        vertices[i+1][1] = r * sin(2 * M_PI * i/ 8);
+        vertices[i + 1][0] = r * cos(2 * M_PI * i / 8); // 0,1,2,3,4,5,6,7
+        vertices[i + 1][1] = r * sin(2 * M_PI * i / 8);
     }
     for (int i = 0; i < 9; i++) {
         cout << vertices[i][0] << ", " << vertices[i][1] << endl;
@@ -25,12 +25,13 @@ void octagonVertices(float r, float vertices[9][2]) {
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (key == GLFW_KEY_C && action == GLFW_PRESS)
-    { 
-        for (int i = 0; i < 4; i++) 
+    /*if (key == GLFW_KEY_C && action == GLFW_PRESS)
+    {
+        for (int i = 0; i < 4; i++)
         {
-            color1[i] = (rand()*1.0f)/RAND_MAX;
-            color2[i] = (rand()*1.0f)/RAND_MAX;
+            color1[i] = (rand() * 1.0f) / RAND_MAX;
+            color2[i] = (rand() * 1.0f) / RAND_MAX;
+     
         }
         //std::cout << color1[0] << " " << color1[1] << " " << color1[2] << " " << color1[3] << std::endl;
         //std::cout << color2[0] << " " << color2[1] << " " << color2[2] << " " << color2[3] << std::endl;
@@ -38,13 +39,14 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         glUniform4f(color2Loc, color2[0], color2[1], color2[2], color2[3]);
 
     }
-    else if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+    
+    else */if (key == GLFW_KEY_UP && action == GLFW_PRESS)
     {
-        if (r < 1.8) 
+        if (r < 1.8)
         {
-            r+=0.02;
+            r += 0.02;
         }
-        else if(r>=2){
+        else if (r >= 2) {
             r += 0;
         }
         //std::cout << r << endl;
@@ -56,13 +58,13 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         {
             r -= 0.02;
         }
-        else if( r <=0){
+        else if (r <= 0) {
             r -= 0;
         }
         //std::cout << r << endl;
         glUniform1f(scaleloc, r);
     }
-    
+
 }
 
 int main(void)
@@ -83,8 +85,8 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
-    
-    //glfwSetKeyCallback(window, keyCallback);
+
+    glfwSetKeyCallback(window, keyCallback);
 
 
     GLenum err = glewInit();
@@ -118,7 +120,7 @@ int main(void)
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9 * 2, vertices, GL_STATIC_DRAW); // jumlah vertex yng di deklarasikan
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float)*2, 0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
     // untuk  index buffernya
     unsigned int indexBuffer = 0;
@@ -133,7 +135,7 @@ int main(void)
 
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    
+
     glShaderSource(vertexShader, 1, &vertexChar, NULL);
     glShaderSource(fragmentShader, 1, &fragmentChar, NULL);
 
@@ -150,11 +152,12 @@ int main(void)
     scaleloc = glGetUniformLocation(program, "scale");
     glUniform1f(scaleloc, r);
 
-    color1Loc = glGetUniformLocation(program, "color1");
+   /* color1Loc = glGetUniformLocation(program, "color1");
     glUniform4f(color1Loc, color1[0], color1[1], color1[2], color1[3]);
 
     color2Loc = glGetUniformLocation(program, "color2");
     glUniform4f(color2Loc, color2[0], color2[1], color2[2], color2[3]);
+    */
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
