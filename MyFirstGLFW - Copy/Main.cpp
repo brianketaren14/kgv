@@ -1,3 +1,7 @@
+// UTS_Octagonal.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#define GLEW_STATIC
 #define _USE_MATH_DEFINES
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -6,7 +10,7 @@
 #include <math.h>
 
 //pewarnaan setiap segitiga
-float color1[] = { 1.0, 0.0, 0.0, 1.0 }; 
+float color1[] = { 1.0, 0.0, 0.0, 1.0 };
 float color2[] = { 0.0, 1.0, 0.0, 1.0 };
 float color3[] = { 0.0, 0.0, 1.0, 1.0 };
 float color4[] = { 0.160, 1, 0.921, 1.0 };
@@ -15,6 +19,8 @@ float color6[] = { 0.698, 0.160, 1, 1.0 };
 float color7[] = { 1, 0.160, 0.941, 1.0 };
 float color8[] = { 0.847, 0.619, 0.231, 1.0 };
 
+float currentTime = 0.0f;
+float a, b = 0.0f;
 
 unsigned int program;
 GLint color1Loc, color2Loc, color3Loc, color4Loc, color5Loc, color6Loc, color7Loc, color8Loc, scaleloc;
@@ -27,7 +33,7 @@ void octagonVertices(float r, float vertices[9][2]) {
         vertices[i + 1][0] = r * cos(2 * M_PI * i / 8); // 0,1,2,3,4,5,6,7
         vertices[i + 1][1] = r * sin(2 * M_PI * i / 8);
     }
-    
+
 }
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -44,7 +50,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
             color6[i] = (rand() * 1.0f) / RAND_MAX;
             color7[i] = (rand() * 1.0f) / RAND_MAX;
             color8[i] = (rand() * 1.0f) / RAND_MAX;
-     
+
         }
 
         /*std::cout << color1[0] << " " << color1[1] << " " << color1[2] << " " << color1[3] << std::endl;
@@ -187,7 +193,7 @@ int main(void) //main program
 
     color2Loc = glGetUniformLocation(program, "color2");
     glUniform4f(color2Loc, color2[0], color2[1], color2[2], color2[3]);
-    
+
     color3Loc = glGetUniformLocation(program, "color3");
     glUniform4f(color3Loc, color3[0], color3[1], color3[2], color3[3]);
 
@@ -210,6 +216,22 @@ int main(void) //main program
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
+        currentTime = glfwGetTime() / 0.5f;
+
+        a = (float)sin(currentTime) * (RAND_MAX);
+        b = (float)cos(currentTime) * (RAND_MAX);
+        
+        glUniform4f(color1Loc, color1[0] * a, color1[1] * b, color1[2], color1[3] * a);
+        glUniform4f(color2Loc, color2[0] * a, color2[1] * a, color2[2], color2[3] * b);
+        glUniform4f(color3Loc, color3[0] * a, color3[1] * b, color3[2], color3[3] * a);
+
+        glUniform4f(color4Loc, color4[0] * b, color4[1] * a, color4[2], color4[3] * b);
+        glUniform4f(color5Loc, color5[0] * b, color5[1] * b, color5[2], color5[3] * a);
+        glUniform4f(color6Loc, color6[0] * b, color6[1] * a, color6[2], color6[3] * b);
+
+        glUniform4f(color7Loc, color7[0] * a, color7[1] * b, color7[2], color7[3] * a);
+        glUniform4f(color8Loc, color8[0] * b, color8[1] * a, color8[2], color8[3] * b);
+
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
