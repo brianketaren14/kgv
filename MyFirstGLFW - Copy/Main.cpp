@@ -216,6 +216,7 @@ int main(void) //main program
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
+        //membuat animasi dengan mengganti warna secara random di setiap polygon untuk setiap detiknya
         currentTime = glfwGetTime() / 0.5f;
 
         a = (float)sin(currentTime) * (RAND_MAX);
