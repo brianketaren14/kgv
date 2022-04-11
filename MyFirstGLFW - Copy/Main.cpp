@@ -214,7 +214,7 @@ int main(void) //main program
 
 
     /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
+
     {
         currentTime = glfwGetTime() / 0.5f;
 
