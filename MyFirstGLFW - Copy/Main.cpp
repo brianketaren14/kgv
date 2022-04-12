@@ -15,9 +15,6 @@ float color6[] = { 0.698, 0.160, 1, 1.0 };
 float color7[] = { 1, 0.160, 0.941, 1.0 };
 float color8[] = { 0.847, 0.619, 0.231, 1.0 };
 
-float currentTime = 0.0f;
-float a, b = 0.0f;
-
 unsigned int program;
 GLint color1Loc, color2Loc, color3Loc, color4Loc, color5Loc, color6Loc, color7Loc, color8Loc, scaleloc;
 float scale = 0.5;
