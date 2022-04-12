@@ -217,7 +217,7 @@ int main(void) //main program
     while (!glfwWindowShouldClose(window))
     {
         //membuat animasi dengan mengganti warna secara random di setiap polygon untuk setiap detiknya
-        currentTime = glfwGetTime() / 0.5f;
+        currentTime = glfwGetTime();
 
         a = (float)sin(currentTime) * (RAND_MAX);
         b = (float)cos(currentTime) * (RAND_MAX);
@@ -225,11 +225,9 @@ int main(void) //main program
         glUniform4f(color1Loc, color1[0] * a, color1[1] * b, color1[2], color1[3] * a);
         glUniform4f(color2Loc, color2[0] * a, color2[1] * a, color2[2], color2[3] * b);
         glUniform4f(color3Loc, color3[0] * a, color3[1] * b, color3[2], color3[3] * a);
-
         glUniform4f(color4Loc, color4[0] * b, color4[1] * a, color4[2], color4[3] * b);
         glUniform4f(color5Loc, color5[0] * b, color5[1] * b, color5[2], color5[3] * a);
         glUniform4f(color6Loc, color6[0] * b, color6[1] * a, color6[2], color6[3] * b);
-
         glUniform4f(color7Loc, color7[0] * a, color7[1] * b, color7[2], color7[3] * a);
         glUniform4f(color8Loc, color8[0] * b, color8[1] * a, color8[2], color8[3] * b);
 
