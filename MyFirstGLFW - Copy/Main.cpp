@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES                                                                                   //1. Andri
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -19,7 +19,7 @@ unsigned int program;
 GLint color1Loc, color2Loc, color3Loc, color4Loc, color5Loc, color6Loc, color7Loc, color8Loc, scaleloc;
 float scale = 0.5;
 
-//untuk menentukan titik / vertex pada octagon dengan parameter panjang sisi luar octagon dan menampung target array
+//untuk menentukan titik / vertex pada octagon dengan parameter panjang sisi luar octagon dan parameter untuk menampung target array
 void octagonVertices(float r, float vertices[9][2]) {
     for (int i = 0; i < 8; i++) {
         
@@ -58,7 +58,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 
     }
 
-    // scaling / merubah ukuran octagon
+    // scaling / merubah ukuran octagon                                                     //2. Daniel
     else if (key == GLFW_KEY_UP && action == GLFW_PRESS)
     {
         if (scale < 1.8)
@@ -86,7 +86,7 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 
 }
 
-int main(int key, int scancode, int action, int mods) //main program
+int main(int key, int scancode, int action, int mods) //main program                                        
 {
     GLFWwindow* window;
 
@@ -110,7 +110,7 @@ int main(int key, int scancode, int action, int mods) //main program
 
     GLenum err = glewInit();
 
-    // vertex
+    // vertex                                                                                               //3. Albert
     float vertices[9][2] = {
         {0,0 }
     };
@@ -140,7 +140,7 @@ int main(int key, int scancode, int action, int mods) //main program
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-    // untuk  index buffer ke shader
+    // untuk mengirim index buffer ke shader
     unsigned int indexBuffer = 0;
     glGenBuffers(1, &indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer); // untuk mengikat indexBUffer ke gl_element_array
@@ -197,11 +197,11 @@ int main(int key, int scancode, int action, int mods) //main program
     glUniform4f(color8Loc, color8[0], color8[1], color8[2], color8[3]);
 
 
-    /* Loop until the user closes the window */
+    /* Loop until the user closes the window */                                                             //4. Alex
     while (!glfwWindowShouldClose(window))
     {
         
-        //membuat animasi dengan mengganti warna secara random di setiap polygon untuk setiap detiknya
+        //membuat animasi dengan mengganti warna secara random di setiap segitiga untuk setiap detiknya
      
             for (int i = 0; i < 4; i++)
             {
@@ -223,6 +223,7 @@ int main(int key, int scancode, int action, int mods) //main program
             glUniform4f(color6Loc, color6[0], color6[1], color6[2], color6[3]);
             glUniform4f(color7Loc, color7[0], color7[1], color7[2], color7[3]);
             glUniform4f(color8Loc, color8[0], color8[1], color8[2], color8[3]);
+
             glfwWaitEventsTimeout(1);
         
         /* Render here */
